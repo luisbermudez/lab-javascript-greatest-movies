@@ -64,13 +64,37 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  const arrCopy = movies.map(movie => movie);
-  
+  const arrCopy = movies.map(function (movie) {
+    const duration = movie.duration;
+    let time;
+
+    if(duration.includes(' ')) {
+      const splitted = duration.split(' ');
+      const hour = (splitted[0].slice(0, splitted[0].indexOf('h'))) * 60;
+      const min = (splitted[1].slice(0, splitted[1].indexOf('min'))) * 1;
+      time = hour + min; 
+    } else {
+      time = (duration.slice(0, duration.indexOf('h'))) * 60;
+    }
+
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: time,
+      genre: movie.genre,
+      score: movie.score,
+    }
+  })
   return arrCopy;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  if(!movies.length) return null;
+
+  
+}
 
 
 
